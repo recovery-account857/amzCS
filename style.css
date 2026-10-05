@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #000000;
+    line-height: 1.5;
+}
+
+.wadah-utama {
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Logo Amazon */
+.logo-amazon {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.teks-amazon {
+    font-size: 30px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.panah {
+    color: #ff9900;
+    font-size: 24px;
+}
+
+/* Kotak Masuk */
+.kotak-masuk {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px 26px;
+    margin-bottom: 20px;
+}
+
+.kotak-masuk h1 {
+    font-size: 28px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.kotak-masuk label {
+    display: block;
+    font-weight: bold;
+    font-size: 13px;
+    margin: 15px 0 5px;
+}
+
+.kotak-masuk input {
+    width: 100%;
+    padding: 7px;
+    border: 1px solid #a6a6a6;
+    border-radius: 3px;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.tombol-lanjut {
+    width: 100%;
+    padding: 7px;
+    background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+    border: 1px solid #a88734;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 10px 0 20px;
+}
+
+.tombol-lanjut:hover {
+    background: linear-gradient(to bottom, #f5d78e, #eeb933);
+}
+
+.teks-syarat {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.teks-syarat a {
+    color: #0066c0;
+    text-decoration: none;
+}
+
+.bantuan {
+    font-size: 13px;
+    color: #0066c0;
+    margin-bottom: 25px;
+}
+
+.bantuan a {
+    color: #0066c0;
+    text-decoration: none;
+}
+
+.garis-pemisah {
+    border-top: 1px solid #e7e7e7;
+    padding-top: 20px;
+    margin: 15px 0 10px;
+}
+
+.garis-pemisah span {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.tautan-bisnis {
+    margin: 5px 0;
+}
+
+.tautan-bisnis a {
+    color: #0066c0;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/* Bagian Daftar */
+.bagian-daftar {
+    text-align: center;
+}
+
+.teks-pemisah {
+    border-top: 1px solid #e7e7e7;
+    text-align: center;
+    position: relative;
+    margin: 20px 0;
+    font-size: 12px;
+    color: #767676;
+}
+
+.teks-pemisah::before {
+    content: "New to Amazon?";
+    background: #fff;
+    padding: 0 8px;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tombol-daftar {
+    width: 100%;
+    padding: 7px;
+    background: linear-gradient(to bottom, #f7f8fa, #e7e9ec);
+    border: 1px solid #adb1b8;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.tombol-daftar:hover {
+    background: linear-gradient(to bottom, #e7e9ec, #d7d9dc);
+}
+
+/* Kaki Halaman */
+footer {
+    border-top: 1px solid #eee;
+    margin-top: 30px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.tautan-kaki a {
+    color: #0066c0;
+    text-decoration: none;
+    font-size: 11px;
+    margin: 0 8px;
+}
+
+.hak-cipta {
+    font-size: 11px;
+    color: #555;
+    margin-top: 10px;
+}

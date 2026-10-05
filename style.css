@@ -1,6 +1,6 @@
 /* ==========================================
-   style.css — Semua Gaya Tampilan
-   Ubah di sini saja, index.html tetap bersih
+   style.css — Persis Seperti Amazon Asli
+   Latar putih, header/footer biru tua, bahasa dinamis
    ========================================== */
 
 * {
@@ -12,420 +12,328 @@
 
 body {
     background-color: #ffffff;
-    color: #111111;
+    color: #0f1111;
     line-height: 1.5;
+    font-size: 14px;
 }
 
-/* === Halaman Utama: Email & Kata Sandi === */
-.wadah-utama {
-    max-width: 350px;
-    margin: 14px auto;
+/* === Header Atas === */
+.site-header {
+    background-color: #131921;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.amazon-logo {
+    height: 30px;
+}
+
+.deliver-to {
+    color: #ffffff;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.deliver-to strong {
+    font-size: 14px;
+}
+
+.header-center {
+    flex: 1;
+    max-width: 600px;
+    margin: 0 20px;
+}
+
+.search-bar {
+    display: flex;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 14px;
+}
+
+.search-button {
+    background-color: #febd69;
+    border: none;
     padding: 0 15px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
 }
 
-.logo-amazon {
-    text-align: center;
-    margin-bottom: 18px;
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #ffffff;
+    font-size: 12px;
 }
 
-.logo-gambar {
-    max-width: 130px; /* ✅ Sesuai gambar 2 */
-    height: auto;
+.header-right a {
+    color: #ffffff;
+    text-decoration: none;
 }
 
-.kotak-masuk {
-    border: 1px solid #ddd;
+/* === Navigasi Bawah Header === */
+.sub-nav {
+    background-color: #232f3e;
+    padding: 8px 20px;
+    display: flex;
+    gap: 18px;
+}
+
+.sub-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/* === Indikator Langkah === */
+.steps-indicator {
+    max-width: 500px;
+    margin: 20px auto 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    font-size: 12px;
+    color: #767676;
+}
+
+.step-active {
+    color: #c45500;
+    font-weight: bold;
+}
+
+/* === Konten Utama === */
+.verify-container {
+    max-width: 500px;
+    margin: 20px auto 50px;
+    padding: 0 20px;
+}
+
+.alert-box {
+    border: 1px solid #e07900;
     border-radius: 4px;
-    padding: 20px 26px;
-    margin-bottom: 22px;
+    background-color: #fff8e8;
+    padding: 12px 16px;
+    margin-bottom: 20px;
 }
 
-.kotak-masuk h1 {
+.alert-title {
+    font-weight: bold;
+    color: #c45500;
+    margin-bottom: 4px;
+}
+
+.alert-text {
+    font-size: 13px;
+    color: #111;
+}
+
+.verify-container h1 {
     font-size: 28px;
     font-weight: 500;
-    margin-bottom: 14px;
+    margin-bottom: 8px;
 }
 
-.kotak-masuk label {
+.verify-subtitle {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 24px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
     display: block;
     font-weight: 700;
     font-size: 13px;
     margin-bottom: 6px;
 }
 
-.kotak-masuk input {
+.form-group input,
+.form-group select {
     width: 100%;
-    height: 31px;
-    padding: 3px 7px;
+    padding: 7px 10px;
     border: 1px solid #a6a6a6;
     border-radius: 3px;
-    margin-bottom: 13px;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #007185;
+    box-shadow: 0 0 3px 2px #c8f0f3;
+}
+
+.form-row {
+    display: flex;
+    gap: 12px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.checkbox-group {
+    margin: 20px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
     font-size: 13px;
 }
 
-.kotak-masuk input:focus {
-    outline: none;
-    border-color: #007185;
-    box-shadow: 0 0 0 2px #c8f0f3;
+.verify-button {
+    width: 100%;
+    padding: 8px 16px;
+    background-color: #ffd814;
+    border: 1px solid #fcd200;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
 }
 
-.tombol-lanjut {
+.verify-button:hover {
+    background-color: #f7ca00;
+}
+
+/* === Footer === */
+.back-to-top {
+    background-color: #eaecef;
+    text-align: center;
+    padding: 12px;
+    font-size: 13px;
+}
+
+.back-to-top a {
+    color: #555;
+    text-decoration: none;
+}
+
+.site-footer {
+    background-color: #232f3e;
+    color: #ffffff;
+    padding: 30px 20px;
+    font-size: 12px;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.footer-column h3 {
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 8px;
+}
+
+.footer-column a {
+    color: #dddddd;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    border-top: 1px solid #3a4553;
+    margin-top: 30px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+/* === Halaman Login === */
+.login-container {
+    max-width: 350px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.login-box {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px 26px;
+}
+
+.login-box h1 {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 14px;
+}
+
+.login-button {
     width: 100%;
-    height: 31px;
-    background: #ffd814; /* ✅ Kuning cerah persis gambar 2 */
+    padding: 7px;
+    background: #ffd814;
     border: 1px solid #fcd200;
     border-radius: 3px;
     cursor: pointer;
     font-size: 13px;
-    margin-bottom: 18px;
+    margin: 15px 0;
 }
 
-.tombol-lanjut:hover {
+.login-button:hover {
     background: #f7ca00;
 }
 
-.teks-syarat {
+.divider {
+    text-align: center;
+    margin: 20px 0;
+    color: #767676;
     font-size: 12px;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-
-.teks-syarat a {
-    color: #0066c0;
-    text-decoration: none;
-}
-
-.teks-syarat a:hover {
-    text-decoration: underline;
-}
-
-.bantuan {
-    font-size: 12px;
-}
-
-.bantuan a {
-    color: #0066c0;
-    text-decoration: none;
-}
-
-.bantuan a:hover {
-    text-decoration: underline;
-}
-
-.bantuan span {
-    color: #007185;
-    font-size: 10px;
-    margin-right: 4px;
-}
-
-.garis-pemisah {
-    border-bottom: 1px solid #e7e7e7;
-    margin: 22px 0;
     position: relative;
 }
 
-.garis-pemisah span {
-    background: #fff;
-    padding: 0 8px;
-    font-size: 12px;
-    color: #555;
+.divider::before,
+.divider::after {
+    content: '';
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 7px;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: #e7e7e7;
 }
 
-.tautan-bisnis {
-    font-size: 13px;
-    margin-bottom: 22px;
-}
+.divider::before { left: 0; }
+.divider::after { right: 0; }
 
-.tautan-bisnis a {
-    color: #0066c0;
-    text-decoration: none;
-}
-
-.tautan-bisnis a:hover {
-    text-decoration: underline;
-}
-
-.bagian-daftar {
-    text-align: center;
-    margin-bottom: 26px;
-}
-
-.teks-pemisah {
-    border-bottom: 1px solid #e7e7e7;
-    position: relative;
-    margin-bottom: 14px;
-}
-
-.teks-pemisah span {
-    background: #fff;
-    padding: 0 8px;
-    font-size: 12px;
-    color: #767676;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 7px;
-}
-
-.tombol-daftar {
+.create-account-btn {
     width: 100%;
-    height: 31px;
-    background: #f1f3f6;
-    border: 1px solid #adb1b8;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 13px;
-}
-
-.tombol-daftar:hover {
-    background: #e6e9ed;
-}
-
-footer {
-    text-align: center;
-    padding-top: 20px;
-}
-
-.tautan-kaki {
-    margin-bottom: 10px;
-}
-
-.tautan-kaki a {
-    color: #0066c0;
-    text-decoration: none;
-    font-size: 11px;
-    margin: 0 8px;
-}
-
-.tautan-kaki a:hover {
-    text-decoration: underline;
-}
-
-.hak-cipta {
-    font-size: 11px;
-    color: #555;
-}
-
-.email-terdaftar {
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-.email-terdaftar a {
-    color: #0066c0;
-    text-decoration: none;
-    margin-left: 6px;
-}
-
-.pemisah-or {
-    text-align: center;
-    margin: 16px 0;
-    font-size: 12px;
-    color: #767676;
-}
-
-.tombol-passkey {
-    width: 100%;
-    height: 31px;
-    background: #fff;
+    padding: 7px;
+    background: #eef0f3;
     border: 1px solid #d5d9d9;
     border-radius: 3px;
     cursor: pointer;
     font-size: 13px;
-    margin-bottom: 12px;
 }
 
-.tombol-passkey:hover {
-    background: #f7fafa;
-}
-
-/* === Halaman Verifikasi — Latar Gelap === */
-#halaman-verifikasi {
-    background: #000;
-    color: #fff;
-    min-height: 100vh;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    border-bottom: 1px solid #333;
-}
-
-.logo-kecil {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.lokasi {
-    margin-left: 20px;
-    font-size: 13px;
-}
-
-.nav-tengah {
-    display: flex;
-}
-
-.kotak-cari {
-    width: 500px;
-    height: 36px;
-    padding: 0 10px;
-    border-radius: 4px 0 0 4px;
-    border: none;
-}
-
-.tombol-cari {
-    height: 36px;
-    padding: 0 14px;
-    border: none;
-    border-radius: 0 4px 4px 0;
-    background: #febd69;
-    cursor: pointer;
-}
-
-.nav-kanan {
-    display: flex;
-    gap: 24px;
-    font-size: 13px;
-}
-
-.submenu {
-    display: flex;
-    gap: 20px;
-    padding: 10px 20px;
-    font-size: 13px;
-}
-
-.konten-verifikasi {
-    max-width: 600px;
-    margin: 30px auto;
-    padding: 0 20px;
-}
-
-.kotak-peringatan {
-    background: #fff3cd;
-    color: #856404;
-    padding: 12px 16px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.ikon-peringatan {
-    font-size: 18px;
-}
-
-.teks-peringatan {
-    margin-bottom: 24px;
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.konten-verifikasi h2 {
-    margin-bottom: 8px;
-}
-
-.petunjuk {
-    margin-bottom: 24px;
-    color: #ccc;
-}
-
-.konten-verifikasi label {
-    display: block;
-    margin: 16px 0 6px;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.konten-verifikasi input,
-.konten-verifikasi select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #444;
-    border-radius: 4px;
-    background: #222;
-    color: #fff;
-}
-
-.baris-kota {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.baris-kota div {
-    flex: 1;
-    min-width: 140px;
-}
-
-.kotak-centang {
-    margin: 20px 0;
-    cursor: pointer;
-}
-
-.tombol-kuning {
-    width: 100%;
-    padding: 12px;
-    background: #febd69;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.kaki-gelap {
-    background: #111;
-    color: #aaa;
-    padding: 30px 20px;
-    margin-top: 60px;
-}
-
-.kembali-keatas {
-    display: block;
-    text-align: center;
-    color: #fff;
-    padding: 12px;
-    background: #222;
-    margin-bottom: 30px;
-    text-decoration: none;
-}
-
-.tabel-kaki {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-.tabel-kaki h4 {
-    color: #fff;
-    margin-bottom: 10px;
-}
-
-.tabel-kaki p {
-    font-size: 13px;
-    margin: 6px 0;
-}
-
-.bawah-kaki {
-    text-align: center;
-    border-top: 1px solid #333;
-    padding-top: 20px;
-    font-size: 12px;
-}
-
-.logo-kecil-bawah {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
+.create-account-btn:hover {
+    background: #e7e9ec;
 }
